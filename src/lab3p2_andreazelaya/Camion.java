@@ -51,9 +51,9 @@ public class Camion extends Vehiculo {
     public void setRetroex(boolean retroex) {
         this.retroex = retroex;
         if(retroex==true){
-            exc = "Si tiene excavadora";
+            exc = " Si tiene excavadora";
         }else{
-            exc = "No tiene excavadora";
+            exc = " No tiene excavadora";
         }
     }
     

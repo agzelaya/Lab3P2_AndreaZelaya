@@ -313,6 +313,7 @@ public class Lab3P2_AndreaZelaya {
                                     System.out.println("Opcion ingresada no es valida");
                                 }
                             }
+                            break;
                         }
 
                         case 4: {
@@ -378,6 +379,7 @@ public class Lab3P2_AndreaZelaya {
                                 }
                             }
                         }
+                        break;
                     }
                 }
                 break;
@@ -388,10 +390,26 @@ public class Lab3P2_AndreaZelaya {
             }
 
             case 3: {
+                System.out.println(printConc());
+                System.out.println("Ingrese el indice de la concesionaria a elmiminar un vehiculo: ");
+                int conc = in.nextInt();
+                if(conc >= concesionarias.size() || conc < 0){
+                    System.out.println("Indice ingresado no es valido");
+                }else{
+                    System.out.println("Ingrese el indice del vehiculo a eliminar: ");
+                    int veh = in.nextInt();
+                    if(veh >= concesionarias.get(veh).getCatalogoVenta().size() || veh < 0){
+                        System.out.println("Indice ingresado no es valido");
+                    }else{
+                        concesionarias.get(conc).getCatalogoVenta().remove(veh);
+                        System.out.println("Vehiculo eliminado exitosamente");
+                    }
+                }
                 break;
             }
 
             case 4: {
+                //salida
                 break;
             }
 
