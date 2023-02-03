@@ -12,7 +12,8 @@ public class Clientes {
     public Clientes() {
     }
 
-    public Clientes(String nombre, double saldo) {
+    public Clientes(int ID, String nombre, double saldo) {
+        this.ID = ID;
         this.nombre = nombre;
         setSaldo(saldo);
     }

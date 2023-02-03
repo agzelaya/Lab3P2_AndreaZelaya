@@ -7,6 +7,7 @@ public class Lab3P2_AndreaZelaya {
 
     static Scanner in = new Scanner(System.in);
     static ArrayList<Concesionaria> concesionarias = new ArrayList();
+    static ArrayList<Clientes> clientes = new ArrayList();
 
     public static void main(String[] args) {
         System.out.println("Alcaldía Municipal del Distrito Central (AMDC)\n");
@@ -17,6 +18,7 @@ public class Lab3P2_AndreaZelaya {
                     + "2. CRUD Clientes\n"
                     + "3. CRUD Vehiculos\n"
                     + "4. Compra/Venta de vehículos por parte de un cliente\n"
+                    + "5. Salida\n"
                     + "Ingrese la opción que desea usar:");
             main = in.nextInt();
 
@@ -27,6 +29,7 @@ public class Lab3P2_AndreaZelaya {
                 }
 
                 case 2: {
+                    CRUDClientes();
                     break;
                 }
 
@@ -53,6 +56,7 @@ public class Lab3P2_AndreaZelaya {
                 + "1. Crear Concesionaria\n"
                 + "2. Modificar dirección de la concesionaria\n"
                 + "3. Eliminar concesionaria\n"
+                + "4. Salir"
                 + "Ingrese la opcion a usar: ");
         opc = in.nextInt();
 
@@ -65,14 +69,14 @@ public class Lab3P2_AndreaZelaya {
                 System.out.println("Ingrese la direccion de la concesionaria:\n");
                 String direc = in.nextLine();
 
-                System.out.println("Ingrese el saldo de la concesionaria\n");
+                System.out.println("Ingrese el saldo de la concesionaria:\n");
                 double saldo = in.nextDouble();
 
                 int id = 0;
                 int x = 0;
                 if (concesionarias.size() == 0) {
 
-                    id = concesionarias.size() + 1;
+                    id = concesionarias.size();
                 } else {
                     for (int i = 0; i < concesionarias.size() - 1; i++) {
                         x = concesionarias.get(i + 1).getID();
@@ -117,6 +121,10 @@ public class Lab3P2_AndreaZelaya {
                 }
                 break;
             }
+            
+            case 4:{
+                break;
+            }
 
             default: {
                 System.out.println("Opcion ingresada no es válida");
@@ -131,6 +139,85 @@ public class Lab3P2_AndreaZelaya {
             salida += concesionarias.indexOf(c) + " -> " + c + "\n";
         }
 
+        return salida;
+    }
+
+    public static void CRUDClientes() {
+
+        System.out.println("\nMENU CLIENTES\n"
+                + "1. Crear Cliente\n"
+                + "2. Eliminar cliente\n"
+                + "3. Listar clientes\n"
+                + "4. Salida"
+                
+                + "Ingrese la opcion a usar: ");
+        int opc = in.nextInt();
+
+        switch (opc) {
+            case 1: {
+                System.out.println("Ingrese el nombre del cliente: ");
+                in.nextLine();
+                String name = in.nextLine();
+
+                System.out.println("Ingrese el saldo del cliente: ");
+                double saldo = in.nextDouble();
+                
+                int id = 0;
+                int x = 0;
+                if (clientes.size() == 0) {
+
+                    id = clientes.size();
+                } else {
+                    for (int i = 0; i < clientes.size() - 1; i++) {
+                        x = clientes.get(i + 1).getID();
+                        if (clientes.get(i).getID() > x) {
+                            x = clientes.get(i).getID();
+                        }
+                    }
+                    id = x + 1;
+                }
+                
+                Clientes c = new Clientes(id,name,saldo);
+                clientes.add(c);
+                break;
+            }
+
+            case 2: {
+                System.out.println(printClientes());
+                System.out.println("Ingrese el indice del cliente a eliminar");
+                int ind = in.nextInt();
+
+                if (ind >= 0 && ind < clientes.size()) {
+                    clientes.remove(ind);
+                    System.out.println("Cliente eliminado exitosamente");
+                } else {
+                    System.out.println("Indice ingresado no es valido");
+                }
+                break;
+            }
+            
+            case 3:{
+                System.out.println(printClientes());
+                break;
+            }
+            
+            case 4:{
+                break;
+            }
+            
+            default: {
+                System.out.println("Opcion ingresada no el valida");
+            }
+        }
+
+    }
+    
+    public static String printClientes() {
+        String salida = "";
+        for (Clientes c : clientes) {
+            salida += clientes.indexOf(c) + " -> " + c + "\n";
+        }
+        
         return salida;
     }
 
