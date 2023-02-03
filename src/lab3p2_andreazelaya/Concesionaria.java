@@ -74,7 +74,7 @@ public class Concesionaria {
 
     @Override
     public String toString() {
-        return "Concesionaria{" + "nombre=" + nombre + ", ID=" + ID + ", direccion=" + direccion + ", catalogoVenta=" + catalogoVenta + ", clientes=" + clientes + ", saldo=" + saldo + '}';
+        return "Concesionaria{" + "nombre=" + nombre + ", ID=" + ID + ", direccion=" + direccion + "\n catalogoVenta=" + catalogoVenta + "\n clientes=" + clientes + "\n saldo=" + saldo + '}';
     }
     
     

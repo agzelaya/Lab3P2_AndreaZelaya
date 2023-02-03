@@ -10,7 +10,7 @@ public class Bicicleta extends Vehiculo {
         super();
     }
 
-    public Bicicleta(String desc, int radioRueda, String color, String marca, String modelo, int year, int precio, int llantas, String tipo) {
+    public Bicicleta(String desc, int radioRueda, String color, String marca, String modelo, int year, double precio, int llantas, String tipo) {
         super(color, marca, modelo, year, precio, llantas);
         this.desc = desc;
         this.radioRueda = radioRueda;
@@ -51,7 +51,7 @@ public class Bicicleta extends Vehiculo {
 
     @Override
     public String toString() {
-        return "Bicicleta{" + "desc=" + desc + ", radioRueda=" + radioRueda + ", tipo=" + tipo + '}';
+        return super.toString() + "Bicicleta{" + "desc=" + desc + ", radioRueda=" + radioRueda + ", tipo=" + tipo + '}';
     }
     
     

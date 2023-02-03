@@ -10,10 +10,10 @@ public class Motocicleta extends Vehiculo{
     public Motocicleta() {
     }
 
-    public Motocicleta(int desplazamiento, boolean isElectrica, String color, String marca, String modelo, int year, int precio, int llantas) {
+    public Motocicleta(int desplazamiento, boolean isElectrica, String color, String marca, String modelo, int year, double precio, int llantas) {
         super(color, marca, modelo, year, precio, llantas);
         setDesplazamiento(desplazamiento);
-        this.isElectrica = isElectrica;
+        setIsElectrica(isElectrica);
     }
 
     public int getDesplazamiento() {
@@ -36,15 +36,15 @@ public class Motocicleta extends Vehiculo{
     public void setIsElectrica(boolean isElectrica) {
         this.isElectrica = isElectrica;
         if(isElectrica==true){
-            salida = "Si tiene excavadora";
+            salida = "Si es electrica";
         }else{
-            salida = "No tiene excavadora";
+            salida = "No es electrica";
         }
     }
 
     @Override
     public String toString() {
-        return "Motocicleta{" + "desplazamiento=" + desplazamiento + ", isElectrica=" + isElectrica + '}' + salida;
+        return super.toString() + "Motocicleta{" + "desplazamiento=" + desplazamiento + salida;
     }
     
     

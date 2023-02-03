@@ -12,7 +12,7 @@ public class Camion extends Vehiculo {
         super();
     }
 
-    public Camion(int volumen, int altura, boolean r, String color, String marca, String modelo, int year, int precio, int llantas) {
+    public Camion(int volumen, int altura, boolean r, String color, String marca, String modelo, int year, double precio, int llantas) {
         super(color, marca, modelo, year, precio, llantas);
         setVolumen(volumen);
         this.altura = altura;
@@ -61,7 +61,7 @@ public class Camion extends Vehiculo {
 
     @Override
     public String toString() {
-        return "Camion{" + "volumen=" + volumen + ", altura=" + altura + ", retroex=" + retroex + '}' + exc;
+        return super.toString() + "Camion:" + "volumen=" + volumen + ", altura=" + altura + exc;
     }
 
     

@@ -9,7 +9,7 @@ public class Bus extends Vehiculo{
     public Bus() {
     }
 
-    public Bus(int p, String color, String marca, String modelo, int year, int precio, int llantas) {
+    public Bus(int p, String color, String marca, String modelo, int year, double precio, int llantas) {
         super(color, marca, modelo, year, precio, llantas);
         setPasajeros(p);
     }
@@ -42,7 +42,7 @@ public class Bus extends Vehiculo{
 
     @Override
     public String toString() {
-        return "Bus{" + "pasajeros=" + pasajeros + ", tipo=" + tipo + '}';
+        return super.toString() + "Bus{" + "pasajeros=" + pasajeros + ", tipo=" + tipo + '}';
     }
     
     

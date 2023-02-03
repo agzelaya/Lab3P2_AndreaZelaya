@@ -6,13 +6,13 @@ public class Vehiculo {
     protected String marca;
     protected String modelo;
     protected int year;
-    protected int precio;
+    protected double precio;
     protected int llantas;
 
     public Vehiculo() {
     }
 
-    public Vehiculo(String color, String marca, String modelo, int year, int precio, int llantas) {
+    public Vehiculo(String color, String marca, String modelo, int year, double precio, int llantas) {
         this.color = color;
         this.marca = marca;
         this.modelo = modelo;
@@ -53,11 +53,11 @@ public class Vehiculo {
         this.year = year;
     }
 
-    public int getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(int precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 
