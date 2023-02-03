@@ -354,10 +354,10 @@ public class Lab3P2_AndreaZelaya {
                                     System.out.println("CAMION DE CARGA");
                                     System.out.println("Ingrese el volumen maximo de carga: ");
                                     int volumen = in.nextInt();
-                                    
+
                                     System.out.println("Ingrese la altura del camion");
                                     int alt = in.nextInt();
-                                    
+
                                     System.out.println("¿El camion tiene excavadora? 1=si, 0=no");
                                     int exc = in.nextInt();
                                     boolean hasExc = false;
@@ -368,7 +368,7 @@ public class Lab3P2_AndreaZelaya {
                                     } else {
                                         System.out.println("Opcion no es valida");
                                     }
-                                    
+
                                     Camion cam = new Camion(volumen, alt, hasExc, color, marca, modelo, year, precio, llantas);
                                     vehiculos.add(cam);
                                     concesionarias.get(conc).getCatalogoVenta().add(cam);
@@ -389,67 +389,68 @@ public class Lab3P2_AndreaZelaya {
                 System.out.println(printConc());
                 System.out.println("Ingrese el indice de la concesionaria a modificar un vehiculo: ");
                 int conc = in.nextInt();
-                if(conc >= concesionarias.size() || conc < 0){
+                if (conc >= concesionarias.size() || conc < 0) {
                     System.out.println("Indice ingresado no es valido");
-                }else{
+                } else {
                     System.out.println("Ingrese el indice del vehiculo a modificar: ");
                     int veh = in.nextInt();
-                    if(veh >= concesionarias.get(conc).getCatalogoVenta().size() || veh < 0){
+                    if (veh >= concesionarias.get(conc).getCatalogoVenta().size() || veh < 0) {
                         System.out.println("Indice ingresado no es valido");
-                    }else{
-                        if(concesionarias.get(conc).getCatalogoVenta().get(veh) instanceof Bicicleta){
+                    } else {
+                        if (concesionarias.get(conc).getCatalogoVenta().get(veh) instanceof Bicicleta) {
                             System.out.println("1. Descripcion\n"
                                     + "2. Radio de rueda\n"
                                     + "3. Tipo\n"
                                     + "Ingrese el atributo que desea modificar: ");
                             int atr = in.nextInt();
-                            switch(atr){
-                                case 1:{
+                            switch (atr) {
+                                case 1: {
                                     System.out.println("Ingrese la descripcion de la bicicleta: ");
                                     in.nextLine();
                                     String desc = in.nextLine();
-                                    
-                                    ((Bicicleta)concesionarias.get(conc).getCatalogoVenta().get(veh)).setDesc(desc);
+
+                                    ((Bicicleta) concesionarias.get(conc).getCatalogoVenta().get(veh)).setDesc(desc);
                                     break;
                                 }
-                                
-                                case 2:{
+
+                                case 2: {
                                     System.out.println("Ingrese el radio de la rueda de la bicicleta: ");
                                     int radio = in.nextInt();
-                                    
-                                    ((Bicicleta)concesionarias.get(conc).getCatalogoVenta().get(veh)).setRadioRueda(radio);
+
+                                    ((Bicicleta) concesionarias.get(conc).getCatalogoVenta().get(veh)).setRadioRueda(radio);
                                     break;
                                 }
-                                
-                                case 3:{
+
+                                case 3: {
                                     System.out.println("Ingrese el tipo de la bicicleta: ");
                                     in.nextLine();
                                     String tipo = in.nextLine();
-                                    
-                                    ((Bicicleta)concesionarias.get(conc).getCatalogoVenta().get(veh)).setTipo(tipo);
+
+                                    ((Bicicleta) concesionarias.get(conc).getCatalogoVenta().get(veh)).setTipo(tipo);
                                     break;
                                 }
-                                
-                                default:{
+
+                                default: {
                                     System.out.println("Indice ingresado no es valido");
+                                    break;
                                 }
                             }
-                        }else if (concesionarias.get(conc).getCatalogoVenta().get(veh) instanceof Motocicleta){
+                        } else if (concesionarias.get(conc).getCatalogoVenta().get(veh) instanceof Motocicleta) {
                             System.out.println("1. Desplacamiento de motor\n"
                                     + "2. ¿Es electrica?\n"
                                     + "Ingrese el atributo que desea modificar: ");
                             int atr = in.nextInt();
-                            
-                            switch(atr){
-                                case 1:{
+
+                            switch (atr) {
+                                case 1: {
                                     System.out.println("Ingrese el desplacamiento del motor de la moto: ");
                                     int motor = in.nextInt();
-                                    
-                                    ((Motocicleta)concesionarias.get(conc).getCatalogoVenta().get(veh)).setDesplazamiento(motor);
+
+                                    ((Motocicleta) concesionarias.get(conc).getCatalogoVenta().get(veh)).setDesplazamiento(motor);
                                     break;
                                 }
-                                
-                                case 2:{
+
+                                case 2: {
                                     System.out.println("¿Es la moto electrica? 1=si, 0=no");
                                     int elect = in.nextInt();
                                     boolean isElect = false;
@@ -460,22 +461,102 @@ public class Lab3P2_AndreaZelaya {
                                     } else {
                                         System.out.println("Opcion no es valida");
                                     }
+
+                                    ((Motocicleta) concesionarias.get(conc).getCatalogoVenta().get(veh)).setIsElectrica(isElect);
+                                    break;
+                                }
+
+                                default: {
+                                    System.out.println("Indice ingresado no es valido");
+                                    break;
+                                }
+                            }
+
+                        } else if (concesionarias.get(conc).getCatalogoVenta().get(veh) instanceof Carro) {
+                            System.out.println("1. Puertas\n"
+                                    + "2. Descripcion del motor\n"
+                                    + "3. Velocidad maxima\n"
+                                    + "Ingrese el atributo que desea modificar");
+                            int atr = in.nextInt();
+
+                            switch (atr) {
+                                case 1: {
+                                    System.out.println("Ingrese el numero de puertas del carro: ");
+                                    int puerta = in.nextInt();
+
+                                    ((Carro) concesionarias.get(conc).getCatalogoVenta().get(veh)).setPuertas(puerta);
+                                    break;
+                                }
+                                case 2: {
+                                    System.out.println("Ingrese la descripcion del motor del carro: ");
+                                    in.nextLine();
+                                    String desc = in.nextLine();
+
+                                    ((Carro) concesionarias.get(conc).getCatalogoVenta().get(veh)).setDescmotor(desc);
+                                    break;
+                                }
+
+                                case 3: {
+                                    System.out.println("Ingrese la velocidad maxima del carro: ");
+                                    int vel = in.nextInt();
+
+                                    ((Carro) concesionarias.get(conc).getCatalogoVenta().get(veh)).setMaxvel(vel);
+                                    break;
+                                }
+
+                                default: {
+                                    System.out.println("Indice ingresado no es valido");
+                                    break;
+                                }
+                            }
+                        } else if (concesionarias.get(conc).getCatalogoVenta().get(veh) instanceof Bus) {
+                            System.out.println("Ingrese la capacidad maxima de pasajeros del bus(el tipo de bus se cambia automaticamente): ");
+                            int cap = in.nextInt();
+
+                            ((Bus) concesionarias.get(conc).getCatalogoVenta().get(veh)).setPasajeros(cap);
+                        } else if (concesionarias.get(conc).getCatalogoVenta().get(veh) instanceof Camion) {
+                            System.out.println("1. Volumen maximo\n"
+                                    + "2. Altura\n"
+                                    + "3. ¿Tiene excavadora?\n"
+                                    + "Ingrese el atriburo a modificar:");
+                            int atr = in.nextInt();
+
+                            switch (atr) {
+                                case 1: {
+                                    System.out.println("Ingrese el volumen maximo de carga del camion: ");
+                                    int vol = in.nextInt();
+
+                                    ((Camion) concesionarias.get(conc).getCatalogoVenta().get(veh)).setVolumen(vol);
+                                    break;
+                                }
+                                case 2:{
+                                    System.out.println("Ingrese la altura del camion: ");
+                                    int alt = in.nextInt();
+
+                                    ((Camion) concesionarias.get(conc).getCatalogoVenta().get(veh)).setAltura(alt);
+                                    break;
+                                }
+                                case 3:{
+                                    System.out.println("¿El camion tiene excavadora? 1=si, 0=no");
+                                    int exc = in.nextInt();
+                                    boolean hasExc = false;
+                                    if (exc == 1) {
+                                        hasExc = true;
+                                    } else if (exc == 0) {
+                                        hasExc = false;
+                                    } else {
+                                        System.out.println("Opcion no es valida");
+                                    }
                                     
-                                    ((Motocicleta)concesionarias.get(conc).getCatalogoVenta().get(veh)).setIsElectrica(isElect);
+                                    ((Camion) concesionarias.get(conc).getCatalogoVenta().get(veh)).setRetroex(hasExc);
                                     break;
                                 }
                                 
-                                default:{
+                                default: {
                                     System.out.println("Indice ingresado no es valido");
+                                    break;
                                 }
                             }
-                            
-                        }else if (concesionarias.get(conc).getCatalogoVenta().get(veh) instanceof Carro){
-                            
-                        }else if (concesionarias.get(conc).getCatalogoVenta().get(veh) instanceof Bus){
-                            
-                        }else if(concesionarias.get(conc).getCatalogoVenta().get(veh) instanceof Camion){
-                            
                         }
                     }
                 }
@@ -486,14 +567,14 @@ public class Lab3P2_AndreaZelaya {
                 System.out.println(printConc());
                 System.out.println("Ingrese el indice de la concesionaria a eliminar un vehiculo: ");
                 int conc = in.nextInt();
-                if(conc >= concesionarias.size() || conc < 0){
+                if (conc >= concesionarias.size() || conc < 0) {
                     System.out.println("Indice ingresado no es valido");
-                }else{
+                } else {
                     System.out.println("Ingrese el indice del vehiculo a eliminar: ");
                     int veh = in.nextInt();
-                    if(veh >= concesionarias.get(conc).getCatalogoVenta().size() || veh < 0){
+                    if (veh >= concesionarias.get(conc).getCatalogoVenta().size() || veh < 0) {
                         System.out.println("Indice ingresado no es valido");
-                    }else{
+                    } else {
                         concesionarias.get(conc).getCatalogoVenta().remove(veh);
                         System.out.println("Vehiculo eliminado exitosamente");
                     }
