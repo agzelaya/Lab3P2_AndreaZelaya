@@ -627,33 +627,36 @@ public class Lab3P2_AndreaZelaya {
                 if (conc >= concesionarias.size() || conc < 0) {
                     System.out.println("Indice ingresado no es valido");
                 } else {
-                    
+
                     System.out.println(concesionarias.get(conc).getCatalogoVenta());
                     System.out.println("Ingrese el indice del vehiculo a comprar: ");
                     int veh = in.nextInt();
                     if (veh >= concesionarias.get(conc).getCatalogoVenta().size() || veh < 0) {
                         System.out.println("Indice ingresado no es valido");
-                    }else{
+                    } else {
                         System.out.println(printClientes());
                         System.out.println("Ingrese el indice del cliente: ");
                         int cliente = in.nextInt();
-                        
-                        if(concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio() + (concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio()*0.075)  < clientes.get(cliente).getSaldo()){
-                            System.out.println("Precio del inicial del vehiculo: ");
-                            System.out.println(concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio());
-                            
-                            System.out.println("Precio final del vehiculo");
-                            System.out.println(concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio() + (concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio()*0.075));
-                            
-                            double saldo = clientes.get(cliente).getSaldo();
-                            double concSaldo = concesionarias.get(conc).getSaldo();
-                            concesionarias.get(conc).setSaldo(concSaldo + concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio() + (concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio()*0.075));
-                            clientes.get(cliente).setSaldo(saldo - concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio() + (concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio()*0.075));
-                            clientes.get(conc).getVehiculos().add(concesionarias.get(conc).getCatalogoVenta().get(veh));
-                            concesionarias.get(conc).getCatalogoVenta().remove(veh);
-                            System.out.println("-- Vehiculo vendido exitosamente --");
-                        }else{
-                            System.out.println("Saldo del cliente no es suficiente para comprar el vehiculo mas ganancia de concesionarias");
+                        if (cliente >= clientes.size() || cliente < 0) {
+                            if (concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio() + (concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio() * 0.075) < clientes.get(cliente).getSaldo()) {
+                                System.out.println("Precio del inicial del vehiculo: ");
+                                System.out.println(concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio());
+
+                                System.out.println("Precio final del vehiculo");
+                                System.out.println(concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio() + (concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio() * 0.075));
+
+                                double saldo = clientes.get(cliente).getSaldo();
+                                double concSaldo = concesionarias.get(conc).getSaldo();
+                                concesionarias.get(conc).setSaldo(concSaldo + concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio() + (concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio() * 0.075));
+                                clientes.get(cliente).setSaldo(saldo - (concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio() + (concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio() * 0.075)));
+                                clientes.get(conc).getVehiculos().add(concesionarias.get(conc).getCatalogoVenta().get(veh));
+                                concesionarias.get(conc).getCatalogoVenta().remove(veh);
+                                System.out.println("-- Vehiculo vendido exitosamente --");
+                            } else {
+                                System.out.println("Saldo del cliente no es suficiente para comprar el vehiculo mas ganancia de concesionarias");
+                            }
+                        } else {
+                            System.out.println("Indice no valido");
                         }
                     }
                 }
@@ -662,6 +665,32 @@ public class Lab3P2_AndreaZelaya {
             }
 
             case 2: {
+                System.out.println(printClientes());
+                System.out.println("Ingrese el indice del cliente que va a vender un vehiculo");
+                int cliente = in.nextInt();
+                if(cliente >= clientes.size() || cliente < 0){
+                    System.out.println(clientes.get(cliente).getVehiculos());
+                    System.out.println("Ingrese el indice del vehiculo a comprar: ");
+                    int veh = in.nextInt();
+                    
+                    if(veh >= clientes.get(cliente).getVehiculos().size() || veh < 0){
+                        System.out.println(printConcName());
+                        System.out.println("Ingrese la concesionaria que comprara el carro");
+                        int conc = in.nextInt();
+                        if(conc >= concesionarias.size() || conc < 0){
+                            if(clientes.get(cliente).getVehiculos().get(veh).getPrecio() < concesionarias.get(conc).getSaldo()){
+                                
+                            }else{
+                                System.out.println("Saldo de la concesionaria no es suficiente");
+                            }
+                        }else{
+                            System.out.println("Indice no es valido");
+                        }
+                        
+                    }else{
+                        System.out.println("Indice no es valido");
+                    }
+                }
                 break;
             }
 
