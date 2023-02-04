@@ -41,7 +41,7 @@ public class Lab3P2_AndreaZelaya {
                 }
 
                 case 4: {
-                    System.out.println(printVehiculos());
+                    compraYventa();
                     break;
                 }
 
@@ -140,6 +140,15 @@ public class Lab3P2_AndreaZelaya {
         String salida = "";
         for (Concesionaria c : concesionarias) {
             salida += concesionarias.indexOf(c) + " -> " + c + "\n";
+        }
+
+        return salida;
+    }
+
+    public static String printConcName() {
+        String salida = "";
+        for (Concesionaria c : concesionarias) {
+            salida += concesionarias.indexOf(c) + " -> " + c.getNombre() + "\n";
         }
 
         return salida;
@@ -529,14 +538,14 @@ public class Lab3P2_AndreaZelaya {
                                     ((Camion) concesionarias.get(conc).getCatalogoVenta().get(veh)).setVolumen(vol);
                                     break;
                                 }
-                                case 2:{
+                                case 2: {
                                     System.out.println("Ingrese la altura del camion: ");
                                     int alt = in.nextInt();
 
                                     ((Camion) concesionarias.get(conc).getCatalogoVenta().get(veh)).setAltura(alt);
                                     break;
                                 }
-                                case 3:{
+                                case 3: {
                                     System.out.println("¿El camion tiene excavadora? 1=si, 0=no");
                                     int exc = in.nextInt();
                                     boolean hasExc = false;
@@ -547,11 +556,11 @@ public class Lab3P2_AndreaZelaya {
                                     } else {
                                         System.out.println("Opcion no es valida");
                                     }
-                                    
+
                                     ((Camion) concesionarias.get(conc).getCatalogoVenta().get(veh)).setRetroex(hasExc);
                                     break;
                                 }
-                                
+
                                 default: {
                                     System.out.println("Indice ingresado no es valido");
                                     break;
@@ -600,6 +609,70 @@ public class Lab3P2_AndreaZelaya {
         }
 
         return salida;
+    }
+
+    public static void compraYventa() {
+        System.out.println("COMPRA Y VENTA\n"
+                + "1. Comprar\n"
+                + "2. Vender\n"
+                + "3. Salida\n"
+                + "Seleccione la opcion que desea utilizar: ");
+        int opc = in.nextInt();
+
+        switch (opc) {
+            case 1: {
+                System.out.println(printConcName());
+                System.out.println("Ingrese la concesionaria donde se realizara la compra: ");
+                int conc = in.nextInt();
+                if (conc >= concesionarias.size() || conc < 0) {
+                    System.out.println("Indice ingresado no es valido");
+                } else {
+                    
+                    System.out.println(concesionarias.get(conc).getCatalogoVenta());
+                    System.out.println("Ingrese el indice del vehiculo a comprar: ");
+                    int veh = in.nextInt();
+                    if (veh >= concesionarias.get(conc).getCatalogoVenta().size() || veh < 0) {
+                        System.out.println("Indice ingresado no es valido");
+                    }else{
+                        System.out.println(printClientes());
+                        System.out.println("Ingrese el indice del cliente: ");
+                        int cliente = in.nextInt();
+                        
+                        if(concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio() + (concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio()*0.075)  < clientes.get(cliente).getSaldo()){
+                            System.out.println("Precio del inicial del vehiculo: ");
+                            System.out.println(concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio());
+                            
+                            System.out.println("Precio final del vehiculo");
+                            System.out.println(concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio() + (concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio()*0.075));
+                            
+                            double saldo = clientes.get(cliente).getSaldo();
+                            double concSaldo = concesionarias.get(conc).getSaldo();
+                            concesionarias.get(conc).setSaldo(concSaldo + concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio() + (concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio()*0.075));
+                            clientes.get(cliente).setSaldo(saldo - concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio() + (concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio()*0.075));
+                            clientes.get(conc).getVehiculos().add(concesionarias.get(conc).getCatalogoVenta().get(veh));
+                            concesionarias.get(conc).getCatalogoVenta().remove(veh);
+                            System.out.println("-- Vehiculo vendido exitosamente --");
+                        }else{
+                            System.out.println("Saldo del cliente no es suficiente para comprar el vehiculo mas ganancia de concesionarias");
+                        }
+                    }
+                }
+
+                break;
+            }
+
+            case 2: {
+                break;
+            }
+
+            case 3: {
+                //salida
+            }
+
+            default: {
+                break;
+            }
+        }
     }
 
 }
