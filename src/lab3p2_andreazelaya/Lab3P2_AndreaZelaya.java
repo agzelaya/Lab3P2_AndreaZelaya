@@ -637,7 +637,7 @@ public class Lab3P2_AndreaZelaya {
                         System.out.println(printClientes());
                         System.out.println("Ingrese el indice del cliente: ");
                         int cliente = in.nextInt();
-                        if (cliente >= clientes.size() || cliente < 0) {
+                        if (cliente < clientes.size() && cliente >= 0) {
                             if (concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio() + (concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio() * 0.075) < clientes.get(cliente).getSaldo()) {
                                 System.out.println("Precio del inicial del vehiculo: ");
                                 System.out.println(concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio());
@@ -647,16 +647,15 @@ public class Lab3P2_AndreaZelaya {
 
                                 double saldo = clientes.get(cliente).getSaldo();
                                 double concSaldo = concesionarias.get(conc).getSaldo();
+                                double  finsaldo = concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio() + (concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio() * 0.075);
                                 concesionarias.get(conc).setSaldo(concSaldo + concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio() + (concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio() * 0.075));
-                                clientes.get(cliente).setSaldo(saldo - (concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio() + (concesionarias.get(conc).getCatalogoVenta().get(veh).getPrecio() * 0.075)));
+                                clientes.get(cliente).setSaldo(saldo - finsaldo);
                                 clientes.get(conc).getVehiculos().add(concesionarias.get(conc).getCatalogoVenta().get(veh));
                                 concesionarias.get(conc).getCatalogoVenta().remove(veh);
                                 System.out.println("-- Vehiculo vendido exitosamente --");
                             } else {
                                 System.out.println("Saldo del cliente no es suficiente para comprar el vehiculo mas ganancia de concesionarias");
                             }
-                        } else {
-                            System.out.println("Indice no valido");
                         }
                     }
                 }
@@ -668,26 +667,36 @@ public class Lab3P2_AndreaZelaya {
                 System.out.println(printClientes());
                 System.out.println("Ingrese el indice del cliente que va a vender un vehiculo");
                 int cliente = in.nextInt();
-                if(cliente >= clientes.size() || cliente < 0){
+                if (cliente >= clientes.size() || cliente < 0) {
+                    System.out.println("Indice no valido");
+                } else {
+
                     System.out.println(clientes.get(cliente).getVehiculos());
                     System.out.println("Ingrese el indice del vehiculo a comprar: ");
                     int veh = in.nextInt();
-                    
-                    if(veh >= clientes.get(cliente).getVehiculos().size() || veh < 0){
+
+                    if (veh < clientes.get(cliente).getVehiculos().size() && veh >= 0) {
                         System.out.println(printConcName());
                         System.out.println("Ingrese la concesionaria que comprara el carro");
                         int conc = in.nextInt();
-                        if(conc >= concesionarias.size() || conc < 0){
-                            if(clientes.get(cliente).getVehiculos().get(veh).getPrecio() < concesionarias.get(conc).getSaldo()){
-                                
-                            }else{
+                        if (conc < concesionarias.size() && conc >= 0) {
+                            if (clientes.get(cliente).getVehiculos().get(veh).getPrecio() < concesionarias.get(conc).getSaldo()) {
+                                double saldoCliente = clientes.get(cliente).getSaldo() + clientes.get(cliente).getVehiculos().get(veh).getPrecio();
+                                double concSaldo = concesionarias.get(conc).getSaldo() - clientes.get(cliente).getVehiculos().get(veh).getPrecio();
+                                concesionarias.get(conc).setSaldo(concSaldo);
+                                clientes.get(cliente).setSaldo(saldoCliente);
+
+                                concesionarias.get(conc).getCatalogoVenta().add(clientes.get(cliente).getVehiculos().get(veh));
+                                clientes.get(cliente).getVehiculos().remove(veh);
+                                System.out.println("-- Vehiculo vendido exitosamente --");
+                            } else {
                                 System.out.println("Saldo de la concesionaria no es suficiente");
                             }
-                        }else{
+                        } else {
                             System.out.println("Indice no es valido");
                         }
-                        
-                    }else{
+
+                    } else {
                         System.out.println("Indice no es valido");
                     }
                 }
